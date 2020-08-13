@@ -59,9 +59,20 @@ var randomNumber = function (min, max) {
     return value;
 };
 
+//function to set name
+var getPlayerName = function () {
+    var name = "";
+
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    }
+    console.log("your robot name is" + "" + name);
+    return name;
+};
+
 // This is an object
 var playerInfo = {
-    name: window.prompt("what is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -113,7 +124,6 @@ var startGame = function () {
     for (var i = 0; i < enemyInfo.length; i++) {
         if (playerInfo.health > 0) {
             window.alert("welcome to Robo Gladiators! Round" + (i + 1));
-
             //Pick new enemy to fight based on the index of the enemyNames array
             var pickedEnemyObj = enemyInfo[i];
 
@@ -175,31 +185,11 @@ var shop = function () {
     switch (shopOptionPompt) {
         case "REFILL": // new case
         case "refill":
-            if (playerInfo.money >= 7) {
-                window.alert("Refilling player's health by 20 for 7 dollars.");
-
-                //increase health and decrease money
-                playerInfo.health = playerInfo.health + 20;
-                playerInfo.money = playerInfo.money - 7;
-            }
-            else {
-                window.alert("You don't have enough money!");
-            }
-
+            playerInfo.refillHealth();
             break;
         case "UPGRADE": // new case
         case "upgrade":
-            if (playerInfo.money >= 7) {
-                window.alert("Upgrading player's attack by 6 for 7 dollars.");
-
-                //increase attack and decrease money
-                playerInfo.attack = playerInfo.attack + 6;
-                playerInfo.money = playerInfo.money - 7;
-            }
-            else {
-                window.alert("You don't have enough money");
-            }
-
+            playerInfo.upgradeAttack();
             break;
         case "LEAVE": //new case
         case "leave":
