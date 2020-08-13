@@ -24,11 +24,12 @@ var fight = function (enemyName) {
                 //subtract money from playerMoney for skipping
                 playerMoney = playerMoney - 10;
                 console.log("Player Money", playerMoney);
+                shop();
                 break;
             }
         }
         // remove enemy's health by subtracting the amount set in the playerAttack variable
-        enemyHealth = enemyHealth - playerAttack;
+        enemyHealth = Math.max(0, enemyHealth - playerAttack);
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining. "
         );
@@ -41,7 +42,7 @@ var fight = function (enemyName) {
             window.alert(enemyName + " still has " + enemyHealth + " health left ");
         }
         // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
         // Log a resulting message to the console so we know that it worked.
         console.log(
             enemyName + " attacked " + playerName + " . " + playerName + " now has " + playerHealth + " health remaining "
@@ -154,7 +155,6 @@ var shop = function () {
             }
 
             break;
-            debugger;
         case "LEAVE": //new case
         case "leave":
             window.alert("Leaving the store.");
@@ -171,6 +171,6 @@ var shop = function () {
 };
 // start the game when the page loads
 startGame();
-
+console.log(Math)
 
 
